@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+<title>For My Valentine ❤️</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: linear-gradient(#ff9a9e, #fad0c4);
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+}
+
+.page {
+    display: none;
+    height: 100vh;
+    padding: 20px;
+}
+
+.active {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+h1 {
+    color: #fff;
+    margin-top: 50px;
+    font-size: 28px;
+}
+
+p {
+    color: white;
+    font-size: 16px;
+}
+
+/* Buttons */
+button {
+    width: 80%;
+    max-width: 300px;
+    padding: 16px;
+    font-size: 20px;
+    border: none;
+    border-radius: 30px;
+    margin: 15px 0;
+    cursor: pointer;
+}
+
+.yes {
+    background: #ff4d6d;
+    color: white;
+}
+
+.no {
+    background: white;
+    color: #ff4d6d;
+}
+
+#error {
+    color: red;
+    font-size: 22px;
+    margin-top: 10px;
+}
+
+/* Rose Hunt */
+.hunt-area {
+    position: relative;
+    width: 100%;
+    height: 65vh;
+}
+
+.rose {
+    position: absolute;
+    font-size: 45px;
+    cursor: pointer;
+}
+
+/* Letter */
+.letter {
+    background: white;
+    color: #ff4d6d;
+    padding: 22px;
+    border-radius: 18px;
+    margin-top: 40px;
+    font-size: 18px;
+    width: 90%;
+    max-width: 360px;
+}
+
+.tap {
+    font-size: 14px;
+    color: gray;
+    margin-top: 8px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+    <h1>Will you be my Valentine? ❤️</h1>
+    <button class="yes" onclick="goToPage2()">YES 💕</button>
+    <button class="no" onclick="showError()">NO 😝</button>
+    <div id="error"></div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+    <h1>7th Feb – Rose Day 🌹</h1>
+    <p>Find the rose 💕</p>
+
+    <div class="hunt-area" onclick="missed()">
+        <div class="rose" id="rose" onclick="foundRose(event)">🌹</div>
+    </div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+    <h1>🌹 A Rose For You 🌹</h1>
+    <div class="letter" onclick="openLetter()">
+        Tap to open 💌
+        <div class="tap">(Tap here)</div>
+    </div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+    <h1>💖</h1>
+    <div class="letter">
+        swethamoooo i loveee youu soo much , <br><br>
+        its our first valentine's week , <br>
+        happy rose day , <br><br>
+        i loveee youu soo muchh maaa , <br>
+        nk nee mathi , <br><br>
+        i lovee you <br>
+        i loveee you <br>
+        i loveee youuu , <br><br>
+        youre the best thing ever happened to me <br><br>
+        I loveee youu maa 💕
+    </div>
+</div>
+
+<script>
+function showError() {
+    document.getElementById("error").innerText = "ERROR ❌😜";
+}
+
+function goToPage2() {
+    switchPage("page1", "page2");
+    moveRose();
+}
+
+function moveRose() {
+    const rose = document.getElementById("rose");
+    rose.style.left = Math.random() * 80 + "%";
+    rose.style.top = Math.random() * 60 + "%";
+}
+
+function missed() {
+    moveRose();
+}
+
+function foundRose(event) {
+    event.stopPropagation();
+    switchPage("page2", "page3");
+}
+
+function openLetter() {
+    switchPage("page3", "page4");
+}
+
+function switchPage(from, to) {
+    document.getElementById(from).classList.remove("active");
+    document.getElementById(to).classList.add("active");
+}
+</script>
+
+</body>
+</html>
